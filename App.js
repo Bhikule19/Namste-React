@@ -1,21 +1,18 @@
-/* <div id="parent">
-    <div id="child" >
-        <h1>" I am an H1 tag"</h1>
-    </div>
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-</div> */
+const Title = () => {
+  <h2>Hello I am under the water</h2>;
+};
 
-// Lets build the above html code into react ( Nested Structure in react)
-
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "I am an H1 tag"),
-    React.createElement("h2", {}, "I am an H2 tag"),
-  ]) //to add more than one children you can do it by using array
-);
+//React Funcyional component
+const HeadingComponent = () => {
+  <div id="container">
+    <h1>Namamste React in Functional component</h1>
+    <Title />
+  </div>;
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
-console.log(parent); // object
+
+root.render(<HeadingComponent />);
