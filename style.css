@@ -58,3 +58,9 @@
 .res-logo > img {
   width: 100%;
 }
+
+.filter-btn {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}

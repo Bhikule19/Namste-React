@@ -56,4 +56,10 @@
   width: 100%;
 }
 
+.filter-btn {
+  cursor: pointer;
+  margin: 5px;
+  padding: 10px;
+}
+
 /*# sourceMappingURL=index.3a01df49.css.map */
