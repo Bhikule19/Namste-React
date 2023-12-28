@@ -27454,49 +27454,11 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _mockData = require("../utils/mockData");
 var _restuarantCard = require("./RestuarantCard");
 var _restuarantCardDefault = parcelHelpers.interopDefault(_restuarantCard);
+var _react = require("react");
+var _s = $RefreshSig$();
 const Body = ()=>{
-    let listOfRestaurant = [
-        {
-            type: "restaurant",
-            data: {
-                id: "74453",
-                name: "Domino's Pizza",
-                uuid: "87727dbd-7f2b-4857-9763-359624165845",
-                city: "21",
-                area: "Athwa",
-                totalRatingsString: "1000+ ratings",
-                cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-                cuisines: [
-                    "Pizzas"
-                ],
-                tags: [],
-                costForTwo: 40000,
-                costForTwoString: "\u20B9400 FOR TWO",
-                deliveryTime: 45,
-                averageRating: 3.3
-            }
-        },
-        {
-            type: "restaurant",
-            data: {
-                id: "74456",
-                name: "KFC",
-                uuid: "87727dbd-7f2b-4857-9763-359624165845",
-                city: "21",
-                area: "Athwa",
-                totalRatingsString: "1000+ ratings",
-                cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-                cuisines: [
-                    "Pizzas"
-                ],
-                tags: [],
-                costForTwo: 40000,
-                costForTwoString: "\u20B9400 FOR TWO",
-                deliveryTime: 45,
-                averageRating: 4.2
-            }
-        }
-    ];
+    _s();
+    const [listOfRestaurant, setlistOfRestaurant] = (0, _react.useState)((0, _mockData.restaurantList));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
         children: [
@@ -27505,18 +27467,18 @@ const Body = ()=>{
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                     className: "filter-btn",
                     onClick: ()=>{
-                        listOfRestaurant = listOfRestaurant.filter((res)=>res.data.averageRating > 4);
-                        console.log(listOfRestaurant);
+                        const filteredList = listOfRestaurant.filter((res)=>res.data.avgRating > 4);
+                        setlistOfRestaurant(filteredList);
                     },
                     children: "Top Rated Restaurants"
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 47,
+                    lineNumber: 11,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 46,
+                lineNumber: 10,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27525,21 +27487,22 @@ const Body = ()=>{
                         resData: restuarant
                     }, restuarant.data.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 63,
+                        lineNumber: 27,
                         columnNumber: 13
                     }, undefined)) // Looping over arrray using Map
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 60,
+                lineNumber: 24,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 45,
+        lineNumber: 9,
         columnNumber: 5
     }, undefined);
 };
+_s(Body, "68nMjsBmotXaBI/SdVb6MiIGPik=");
 _c = Body;
 exports.default = Body;
 var _c;
@@ -27550,7 +27513,7 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","../utils/mockData":"iOpE9","./RestuarantCard":"iElQb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iOpE9":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","../utils/mockData":"iOpE9","./RestuarantCard":"iElQb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"iOpE9":[function(require,module,exports) {
 // RestaurantList is JSON Data for displaying cards
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -29417,7 +29380,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _constant = require("../utils/constant");
 const RestuarantCard = (props)=>{
     const { resData } = props;
-    const { name, cuisines, deliveryTime, costForTwoString, cloudinaryImageId } = resData?.data; // destructuring
+    const { name, cuisines, deliveryTime, avgRating, cloudinaryImageId } = resData?.data; // destructuring
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "res-card",
         children: [
@@ -29454,7 +29417,7 @@ const RestuarantCard = (props)=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: costForTwoString
+                children: avgRating
             }, void 0, false, {
                 fileName: "src/components/RestuarantCard.js",
                 lineNumber: 15,
