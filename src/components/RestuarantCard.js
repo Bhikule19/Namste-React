@@ -4,7 +4,7 @@ const RestuarantCard = (props) => {
   const { resData } = props;
 
   const { name, cuisines, deliveryTime, avgRating, cloudinaryImageId } =
-    resData?.data; // destructuring
+    resData?.info; // destructuring
 
   return (
     <div className="res-card">
