@@ -62,4 +62,23 @@
   padding: 10px;
 }
 
+.shimmer-container {
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.shimmer-card {
+  background-color: #f0f0f0;
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.btn {
+  margin-inline: 10px;
+  padding-inline: 30px;
+  font-size: 20px;
+}
+
 /*# sourceMappingURL=index.3a01df49.css.map */
