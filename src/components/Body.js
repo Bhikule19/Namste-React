@@ -5,6 +5,10 @@ import Shimmer from "./Shimmer";
 const Body = () => {
   const [listOfRestaurant, setlistOfRestaurant] = useState([]);
 
+  const [searchText, setsearchTExt] = useState("");
+
+  const [filteredRest, setfilteredRest] = useState([]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,6 +23,9 @@ const Body = () => {
     setlistOfRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setfilteredRest(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   //Conditional Rendering using Ternary operator
@@ -27,11 +34,33 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setsearchTExt(e.target.value);
+            }}
+          ></input>
+          <button
+            onClick={() => {
+              const filteredRest = listOfRestaurant.filter((res) => {
+                return res.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
+              setfilteredRest(filteredRest);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
             const filteredList = listOfRestaurant.filter(
-              (res) => res.data.avgRating > 4
+              (res) => res.info.avgRating > 4
             );
             setlistOfRestaurant(filteredList);
           }}
@@ -42,7 +71,7 @@ const Body = () => {
 
       <div className="res-container">
         {
-          listOfRestaurant.map((restuarant) => (
+          filteredRest.map((restuarant) => (
             <RestuarantCard key={restuarant.info.id} resData={restuarant} />
           )) // Looping over arrray using Map
         }

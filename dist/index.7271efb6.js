@@ -27476,6 +27476,8 @@ var _s = $RefreshSig$();
 const Body = ()=>{
     _s();
     const [listOfRestaurant, setlistOfRestaurant] = (0, _react.useState)([]);
+    const [searchText, setsearchTExt] = (0, _react.useState)("");
+    const [filteredRest, setfilteredRest] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
@@ -27484,56 +27486,93 @@ const Body = ()=>{
         const json = await data.json();
         // console.log(json);
         setlistOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setfilteredRest(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
     //Conditional Rendering using Ternary operator
     return listOfRestaurant.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 26,
+        lineNumber: 33,
         columnNumber: 5
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "filter",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    className: "filter-btn",
-                    onClick: ()=>{
-                        const filteredList = listOfRestaurant.filter((res)=>res.data.avgRating > 4);
-                        setlistOfRestaurant(filteredList);
-                    },
-                    children: "Top Rated Restaurants"
-                }, void 0, false, {
-                    fileName: "src/components/Body.js",
-                    lineNumber: 30,
-                    columnNumber: 9
-                }, undefined)
-            }, void 0, false, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "search",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                type: "text",
+                                className: "search-box",
+                                value: searchText,
+                                onChange: (e)=>{
+                                    setsearchTExt(e.target.value);
+                                }
+                            }, void 0, false, {
+                                fileName: "src/components/Body.js",
+                                lineNumber: 38,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                onClick: ()=>{
+                                    const filteredRest = listOfRestaurant.filter((res)=>{
+                                        return res.info.name.toLowerCase().includes(searchText.toLowerCase());
+                                    });
+                                    setfilteredRest(filteredRest);
+                                },
+                                children: "Search"
+                            }, void 0, false, {
+                                fileName: "src/components/Body.js",
+                                lineNumber: 46,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Body.js",
+                        lineNumber: 37,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        className: "filter-btn",
+                        onClick: ()=>{
+                            const filteredList = listOfRestaurant.filter((res)=>res.info.avgRating > 4);
+                            setlistOfRestaurant(filteredList);
+                        },
+                        children: "Top Rated Restaurants"
+                    }, void 0, false, {
+                        fileName: "src/components/Body.js",
+                        lineNumber: 59,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 29,
+                lineNumber: 36,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "res-container",
-                children: listOfRestaurant.map((restuarant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restuarantCardDefault.default), {
+                children: filteredRest.map((restuarant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restuarantCardDefault.default), {
                         resData: restuarant
                     }, restuarant.info.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 46,
+                        lineNumber: 75,
                         columnNumber: 13
                     }, undefined)) // Looping over arrray using Map
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 43,
+                lineNumber: 72,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 28,
+        lineNumber: 35,
         columnNumber: 5
     }, undefined);
 };
-_s(Body, "L3WDyRlJRNEVn6IZQJfU1GTtvJ8=");
+_s(Body, "kMgQ2hSWW2LpMLQja5Scx1wMC9c=");
 _c = Body;
 exports.default = Body;
 var _c;
@@ -27557,7 +27596,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _constant = require("../utils/constant");
 const RestuarantCard = (props)=>{
     const { resData } = props;
-    const { name, cuisines, deliveryTime, avgRating, cloudinaryImageId } = resData?.info; // destructuring
+    const { name, cuisines, avgRating, cloudinaryImageId, costForTwo, sla } = resData?.info; // destructuring
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "res-card",
         children: [
@@ -27585,7 +27624,7 @@ const RestuarantCard = (props)=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                 children: [
-                    deliveryTime,
+                    sla.deliveryTime,
                     " mins"
                 ]
             }, void 0, true, {
@@ -27598,6 +27637,13 @@ const RestuarantCard = (props)=>{
             }, void 0, false, {
                 fileName: "src/components/RestuarantCard.js",
                 lineNumber: 15,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                children: costForTwo
+            }, void 0, false, {
+                fileName: "src/components/RestuarantCard.js",
+                lineNumber: 16,
                 columnNumber: 7
             }, undefined)
         ]

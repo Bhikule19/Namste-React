@@ -39,8 +39,8 @@
 .res-card {
   margin: 10px;
   padding: 5px;
-  width: 200px;
-  height: 350px;
+  width: 250px;
+  height: 400px;
   border: 1px solid #000;
   background-color: #dfdfdf;
 }
@@ -57,6 +57,19 @@
 
 .res-logo > img {
   width: 100%;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  margin-right: 1rem;
+}
+
+.search-box {
+  margin-right: 10px;
 }
 
 .filter-btn {
