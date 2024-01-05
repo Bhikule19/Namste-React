@@ -21,15 +21,15 @@ const Body = () => {
 
     // console.log(json);
     setlistOfRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setfilteredRest(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
   //Conditional Rendering using Ternary operator
-  return listOfRestaurant.length === 0 ? (
+  return listOfRestaurant?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -63,6 +63,7 @@ const Body = () => {
               (res) => res.info.avgRating > 4
             );
             setlistOfRestaurant(filteredList);
+            // setfilteredRest(filteredList);
           }}
         >
           Top Rated Restaurants
