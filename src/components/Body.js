@@ -1,6 +1,8 @@
 import RestuarantCard from "./RestuarantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurant, setlistOfRestaurant] = useState([]);
@@ -27,6 +29,10 @@ const Body = () => {
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) return <h1>Looks like you are offline</h1>;
 
   //Conditional Rendering using Ternary operator
   return listOfRestaurant?.length === 0 ? (
@@ -73,7 +79,12 @@ const Body = () => {
       <div className="res-container">
         {
           filteredRest.map((restuarant) => (
-            <RestuarantCard key={restuarant.info.id} resData={restuarant} />
+            <Link
+              key={restuarant.info.id}
+              to={"/restaurants/" + restuarant.info.id}
+            >
+              <RestuarantCard resData={restuarant} />
+            </Link>
           )) // Looping over arrray using Map
         }
       </div>
