@@ -1,15 +1,20 @@
-import RestuarantCard from "./RestuarantCard";
-import { useState, useEffect } from "react";
+import RestuarantCard, { withVegLabel } from "./RestuarantCard";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurant, setlistOfRestaurant] = useState([]);
 
   const [searchText, setsearchTExt] = useState("");
 
+  // console.log(listOfRestaurant);
+
   const [filteredRest, setfilteredRest] = useState([]);
+
+  const RestaurantCardVeg = withVegLabel(RestuarantCard);
 
   useEffect(() => {
     fetchData();
@@ -23,10 +28,10 @@ const Body = () => {
 
     // console.log(json);
     setlistOfRestaurant(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setfilteredRest(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -34,16 +39,18 @@ const Body = () => {
 
   if (onlineStatus === false) return <h1>Looks like you are offline</h1>;
 
+  const { setUserName, loggedInUser } = useContext(UserContext);
+
   //Conditional Rendering using Ternary operator
   return listOfRestaurant?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex justify-between	p-10 ">
+        <div className="search ">
           <input
             type="text"
-            className="search-box"
+            className="search-box border-4	 "
             value={searchText}
             onChange={(e) => {
               setsearchTExt(e.target.value);
@@ -63,7 +70,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="filter-btn bg-red-500 p-2 rounded-2xl hover:bg-black   "
           onClick={() => {
             const filteredList = listOfRestaurant.filter(
               (res) => res.info.avgRating > 4
@@ -74,16 +81,28 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <div className="m-4 p-4 flex">
+          <label>User:</label>
+          <input
+            className="border border-black"
+            onChange={(e) => setUserName(e.target.value)}
+            value={loggedInUser}
+          ></input>
+        </div>
       </div>
 
-      <div className="res-container">
+      <div className="res-container flex p-5 m-5 gap-10 flex-wrap">
         {
           filteredRest.map((restuarant) => (
             <Link
               key={restuarant.info.id}
               to={"/restaurants/" + restuarant.info.id}
             >
-              <RestuarantCard resData={restuarant} />
+              {restuarant.info.veg ? (
+                <RestaurantCardVeg resData={restuarant} />
+              ) : (
+                <RestuarantCard resData={restuarant} />
+              )}
             </Link>
           )) // Looping over arrray using Map
         }
