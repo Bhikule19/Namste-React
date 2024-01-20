@@ -33,19 +33,23 @@ const RestaurantMenu = () => {
 
   return (
     <div className="text-center">
-      <h1 className="font-bold my-10 text-2xl">{name}</h1>
-      <p className="font-bold text-lg">
-        {cuisines.join(", ")} - {costForTwoMessage}
-      </p>
-      {/* Categories accordian */}
-      {categories.map((category, index) => (
-        <RestaurantCategory
-          data={category?.card?.card}
-          key={category?.card?.card?.title}
-          showItems={index === showItems ? true : false}
-          setshowItems={() => setshowItems(index)}
-        />
-      ))}
+      <div className="menu">
+        <div className="rest-info-section">
+          <h1 className="font-bold my-10 text-2xl">{name}</h1>
+          <p className="font-bold text-lg">
+            {cuisines.join(", ")} - {costForTwoMessage}
+          </p>
+        </div>
+        {/* Categories accordian */}
+        {categories.map((category, index) => (
+          <RestaurantCategory
+            data={category?.card?.card}
+            key={category?.card?.card?.title}
+            showItems={index === showItems ? true : false}
+            setshowItems={() => setshowItems(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
