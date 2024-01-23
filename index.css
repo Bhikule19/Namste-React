@@ -50,4 +50,13 @@
   .vertical-lr {
     writing-mode: vertical-lr;
   }
+
+  .calcualedwh {
+    width: calc(30vw - 54px);
+    height: calc(33.6vw - 60.48px);
+  }
+
+  .restmenu-width {
+    max-width: calc(100% - 144px);
+  }
 }

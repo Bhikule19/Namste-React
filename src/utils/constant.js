@@ -9,3 +9,6 @@ export const MENU_URL =
 
 export const Banner_Cuisines_IMG =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029848/";
+
+export const MENU_CAROUSAL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_628,h_704/";

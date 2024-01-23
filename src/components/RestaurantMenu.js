@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
-import { MENU_URL } from "../utils/constant";
+import { MENU_URL, MENU_CAROUSAL } from "../utils/constant";
 import RestaurantCategory from "./RestaurantCategory";
 import VegButton from "../utils/vegButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,12 +33,6 @@ const RestaurantMenu = () => {
     feeDetails,
   } = resInfo?.cards[0]?.card?.card?.info || {};
 
-  // const { header, couponCode, description } =
-  //   resInfo?.cards[1].card.card.gridElements.infoWithStyle.offers[0].info;
-
-  // const { header, couponCode, description } =
-  //   resInfo?.cards[1].card.card.gridElements.infoWithStyle.offers[1].info;
-
   const offerData =
     resInfo?.cards[1].card.card.gridElements.infoWithStyle.offers;
 
@@ -48,7 +42,14 @@ const RestaurantMenu = () => {
 
   // console.log(offerTag);
 
-  console.log(resInfo);
+  const carouselMenu =
+    resInfo?.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card
+      .carousel;
+
+  // console.log(
+  //   resInfo?.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card
+  //     .carousel
+  // );
 
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(
@@ -305,6 +306,58 @@ const RestaurantMenu = () => {
           <hr className=" border-[1px] border-solid  bg-[rgb(240, 240, 245)] mb-5 "></hr>
         </div>
       </div>
+
+      {carouselMenu ? (
+        <div className="menu-carousal w-full">
+          <h2 className="menuCarousal-header py-0 px-4 mb-6">Top Picks</h2>
+          <div className="snap-x	mb-3 scroll-pl-6	overflow-x-auto overflow-y-hidden whitespace-nowrap flex w-full no-scrollbar">
+            {carouselMenu[0] ? (
+              <div className="carousel-slide ml-4 min-w-[60%] min-h-full snap-center	">
+                <div className="card-container calcualedwh rounded-[20px] relative whitespace-normal no-underline	snap-start inline-block">
+                  <img
+                    className="w-full block rounded-md"
+                    srcSet={MENU_CAROUSAL + carouselMenu[0].creativeId}
+                  />
+                </div>
+              </div>
+            ) : null}
+            {carouselMenu[1] ? (
+              <div className="carousel-slide ml-4 min-w-[60%] min-h-full snap-center	">
+                <div className="card-container calcualedwh rounded-[20px] relative whitespace-normal no-underline	snap-start inline-block">
+                  <img
+                    className="w-full block rounded-md"
+                    srcSet={MENU_CAROUSAL + carouselMenu[1].creativeId}
+                  />
+                </div>
+              </div>
+            ) : null}
+            {carouselMenu[2] ? (
+              <div className="carousel-slide ml-4 min-w-[60%] min-h-full snap-center	">
+                <div className="card-container calcualedwh rounded-[20px] relative whitespace-normal no-underline	snap-start inline-block">
+                  <img
+                    className="w-full block rounded-md"
+                    srcSet={MENU_CAROUSAL + carouselMenu[2].creativeId}
+                  />
+                </div>
+              </div>
+            ) : null}
+            {carouselMenu[3] ? (
+              <div className="carousel-slide ml-4 min-w-[60%] min-h-full snap-center	">
+                <div className="card-container calcualedwh rounded-[20px] relative whitespace-normal no-underline	snap-start inline-block">
+                  <img
+                    className="w-full block rounded-md"
+                    srcSet={MENU_CAROUSAL + carouselMenu[3].creativeId}
+                  />
+                </div>
+              </div>
+            ) : null}
+          </div>
+          <div className="divider">
+            <hr className=" border-[4px] border-solid  bg-[rgb(240, 240, 245)] mb-5 "></hr>
+          </div>
+          <div></div>
+        </div>
+      ) : null}
       {/* -----------------ACCORDIAN---------------------- */}
       <div>
         {/* Categories accordian */}
