@@ -48,10 +48,6 @@ const RestuarantCard = (props) => {
             <div className="single-text-breakwords">{cuisines.join(", ")}</div>
             <div className="text-[#02060c] opacity-80">{areaName}</div>
           </div>
-          {/* <h4 >{cuisines.join(", ")}</h4>
-          <h4>{sla.deliveryTime} mins</h4>
-          <h4>{avgRating}</h4>
-          <h4>{costForTwo}</h4> */}
         </div>
       </div>
     </div>

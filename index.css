@@ -46,4 +46,8 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }
+
+  .vertical-lr {
+    writing-mode: vertical-lr;
+  }
 }

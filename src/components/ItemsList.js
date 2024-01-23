@@ -3,14 +3,13 @@ import { CDN_URL } from "../utils/constant";
 import { addItem } from "../utils/cartSlice";
 
 const ItemsList = ({ items }) => {
-  // console.log("THis is new" + items);
-
   const dispatch = useDispatch();
 
   const handleAddItem = (item) => {
     dispatch(addItem(item));
   };
 
+  // console.log("THis is new one " + items);
   return (
     <div>
       {items.map((item) => (
@@ -45,7 +44,11 @@ const ItemsList = ({ items }) => {
           <div>
             <div className="font-bold	">
               <span className="pr-4">{item.card.info.name}</span>
-              <span>-Rs. {item.card.info.price / 100}</span>
+              <span>
+                -Rs.{" "}
+                {item.card.info.price / 100 ||
+                  item.card.info.defaultPrice / 100}
+              </span>
             </div>
             <p className="text-xs">{item.card.info.description}</p>
           </div>

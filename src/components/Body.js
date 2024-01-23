@@ -8,7 +8,6 @@ import { Banner_Cuisines_IMG } from "../utils/constant";
 import { IoArrowBackCircle, IoArrowForwardCircle } from "react-icons/io5";
 
 const Body = () => {
-  // console.log(listOfRestaurant);
   const [listOfRestaurant, setlistOfRestaurant] = useState([]);
 
   const [searchText, setsearchTExt] = useState("");
@@ -26,6 +25,7 @@ const Body = () => {
   const [restListHeading, setRestListHeading] = useState([]);
 
   const RestaurantCardVeg = withVegLabel(RestuarantCard);
+  console.log(listOfRestaurant);
 
   useEffect(() => {
     fetchData();
@@ -124,6 +124,7 @@ const Body = () => {
           >
             Top Rated Restaurants
           </button>
+          {/* <FilterButton /> */}
           <div className="m-4 p-4 flex">
             <label>User:</label>
             <input
@@ -226,6 +227,75 @@ const Body = () => {
         <div className="res-container">
           <div className="reslist-header mb-5">
             <h2 className="font-bold text-2xl">{restListHeading}</h2>
+          </div>
+          <div className="filter-buttons flex items-center">
+            <div className="rating-button mr-4">
+              <button
+                className="p-2 border border-black rounded-3xl border-opacity-30 cursor-pointer active:bg-orange-400"
+                onClick={() => {
+                  const filteredList = listOfRestaurant.filter(
+                    (res) => res.info.avgRating > 4.5
+                  );
+                  setlistOfRestaurant(filteredList);
+                }}
+              >
+                Rating 4.5+
+              </button>
+            </div>
+            <div className="fastdelivery-button mr-4">
+              <button
+                className="p-2 border border-black rounded-3xl border-opacity-30 cursor-pointer active:bg-orange-400"
+                onClick={() => {
+                  const filteredList = listOfRestaurant.filter(
+                    (res) => res.info.sla.deliveryTime < 30
+                  );
+                  setlistOfRestaurant(filteredList);
+                }}
+              >
+                Fast Delivery
+              </button>
+            </div>
+            <div className="cost-300 mr-4">
+              <button
+                className="p-2 border border-black rounded-3xl border-opacity-30 cursor-pointer active:bg-orange-400"
+                onClick={() => {
+                  const filteredList = listOfRestaurant.filter((res) => {
+                    const price = res.info.costForTwo?.substring(1, 4);
+                    if (price <= "300") return price;
+                  });
+                  setlistOfRestaurant(filteredList);
+                }}
+              >
+                Less than Rs. 300
+              </button>
+            </div>
+            <div className="cost-300-600 mr-4">
+              <button
+                className="p-2 border border-black rounded-3xl border-opacity-30 cursor-pointer active:bg-orange-400"
+                onClick={() => {
+                  const filteredList = listOfRestaurant.filter((res) => {
+                    const price = res.info.costForTwo?.substring(1, 4);
+                    if (price >= "300" && price <= "600") return price;
+                  });
+                  setlistOfRestaurant(filteredList);
+                }}
+              >
+                Rs. 300 - Rs. 600
+              </button>
+            </div>
+            {/* <div className="Pure-Veg">
+              <button
+                className="p-2 border border-black rounded-3xl border-opacity-30 cursor-pointer active:bg-orange-400"
+                onClick={() => {
+                  const filteredList = listOfRestaurant.filter((res) => {
+                    res.info.veg === true;
+                  });
+                  setlistOfRestaurant(filteredList);
+                }}
+              >
+                Pure Veg
+              </button>
+            </div> */}
           </div>
           <div className="grid grid-cols-4 items-start gap-8 my-8">
             {
