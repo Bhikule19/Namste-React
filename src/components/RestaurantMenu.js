@@ -4,7 +4,7 @@ import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
 import { MENU_URL, MENU_CAROUSAL } from "../utils/constant";
 import RestaurantCategory from "./RestaurantCategory";
-import VegButton from "../utils/vegButton";
+// import VegButton from "../utils/vegButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {

@@ -3,7 +3,7 @@ import React from "react";
 const VegButton = () => {
   return (
     <div className="flex">
-      <label
+      {/* <label
         className="inline-block pr-[0.15rem] mr-2 hover:cursor-pointer"
         htmlFor="flexSwitchCheckDefault"
       >
@@ -14,7 +14,7 @@ const VegButton = () => {
         type="checkbox"
         role="switch"
         id="flexSwitchCheckDefault"
-      />
+      /> */}
     </div>
   );
 };
