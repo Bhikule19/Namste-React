@@ -70,7 +70,7 @@ const RestaurantMenu = () => {
   };
 
   return (
-    <div className="max-w-[800px] min-h-[800px] mt-5 mx-auto mb-0">
+    <div className="max-w-[800px] min-h-[800px]  mt-[100px] mx-auto mb-0">
       <div className="RestHeader-container mx-4">
         <div className="RestHead-wrapper mb-5">
           <div className="RestHead-wrapper inline-block	mr-4 ">

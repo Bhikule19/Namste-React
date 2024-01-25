@@ -87,9 +87,12 @@ const Body = () => {
   return listOfRestaurant?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body px-[7rem] font-[ProximaNova,arial,Helvetica Neue,sans-serif]">
-      <div className="px-20">
-        <div className="filter flex justify-between	p-10 ">
+    <div
+      className="body px-[7rem] max-md:px-10 font-[ProximaNova,arial,Helvetica N
+    eue,sans-serif] mt-[100px]  "
+    >
+      <div className="px-20 max-md:px-0">
+        {/* <div className="filter flex justify-between	p-10 ">
           <div className="search ">
             <input
               type="text"
@@ -119,12 +122,11 @@ const Body = () => {
                 (res) => res.info.avgRating > 4
               );
               setlistOfRestaurant(filteredList);
-              // setfilteredRest(filteredList);
             }}
           >
             Top Rated Restaurants
           </button>
-          {/* <FilterButton /> */}
+
           <div className="m-4 p-4 flex">
             <label>User:</label>
             <input
@@ -133,12 +135,12 @@ const Body = () => {
               value={loggedInUser}
             ></input>
           </div>
-        </div>
+        </div> */}
 
         {/* ------------------------Banner------------------- */}
 
         <div className="banner">
-          <div className="banner-heading  font-bold text-2xl flex justify-between	">
+          <div className="banner-heading  font-bold text-2xl flex justify-between	mb-0">
             <h1>{bannerHeading}</h1>
             <div className="flex">
               <IoArrowBackCircle
@@ -297,7 +299,7 @@ const Body = () => {
               </button>
             </div> */}
           </div>
-          <div className="grid grid-cols-4 items-start gap-8 my-8">
+          <div className="grid grid-cols-4  max-md:grid-cols-1 max-md:justify-center items-start gap-8 my-8">
             {
               listOfRestaurant.map((restuarant) => (
                 <Link

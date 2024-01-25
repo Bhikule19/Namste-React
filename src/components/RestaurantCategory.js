@@ -6,23 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const RestaurantCategory = ({ data, showItems, setshowItems }) => {
   const HandleClick = () => {
     //Toggle accordion feature to show the menu items
-    // setshowItems(!showItems);
+    setshowItems(!showItems);
 
-    setshowItems();
+    // setshowItems();
   };
 
   // console.log(data);
   return (
     <div>
-      {/* <div className=" bg-gray-50 p-4 shadow-lg ">
-        <div className="flex justify-between cursor-pointer ">
-          <span className="font-bold text-lg" onClick={HandleClick}>
-            {data.title} ({data.itemCards.length})
-          </span>
-          <span>🔽</span>
-        </div>
-        {showItems && <ItemsList items={data.itemCards} />}
-      </div> */}
       <div className="relative block">
         <div className="main-container relative mt-6 mb-4 mx-4 ">
           <button

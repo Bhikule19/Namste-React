@@ -1,9 +1,10 @@
 import { LOGO_URL } from "../utils/constant";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+// import { IoCart } from "react-icons/io5";
 
 const Header = () => {
   const [btnNameReact, setbtnNameReact] = useState("Login");
@@ -16,43 +17,32 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="flex justify-between items-center bg-red-200 p-3 shadow-xl">
-      <div className="logo-container">
-        <img className="w-40" src={LOGO_URL}></img>
-      </div>
-      <div className="nav-items p-4 m-4">
-        <ul className="flex gap-5">
-          <li className=" ">Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
-          <li>
-            <Link to="/" className="">
-              Home
+    <div>
+      <header className="header-shadow fixed top-0 left-0 right-0 h-20 bg-white z-50 header-style p-[0_20px]">
+        <div className="block">
+          <div className="max-w-[1200px] min-w-[120px] relative m-[0_auto] h-20 bg-white flex items-center">
+            <Link className="no-underline	 block h-12">
+              <img className="h-10 w-6" srcSet={LOGO_URL} />
             </Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-          <li>
-            <Link to="/cart">Cart - ({cartItems.length} items)</Link>
-          </li>
-          <li>
-            <Link to="/grocery">Grocery</Link>
-          </li>
-          <button
-            className="btn"
-            onClick={() => {
-              btnNameReact === "Login"
-                ? setbtnNameReact("Logout")
-                : setbtnNameReact("Login");
-            }}
-          >
-            {btnNameReact}
-          </button>
-          <li className="px-4 font-bold">{loggedInUser}</li>
-        </ul>
-      </div>
+            <ul className="flex-[1] min-w-0 flex flex-row-reverse h-full items-center list-none	">
+              <li className="mr-0 text-[#3d4152] text-base font-medium">
+                <div className="relative">
+                  <div className="">
+                    <Link to="/cart">Cart - ({cartItems.length})</Link>
+                  </div>
+                </div>
+              </li>
+              <li className="mr-[60px] text-[#3d4152] text-base font-medium">
+                <div className="relative">
+                  <div className="">
+                    <Link to="/">Home</Link>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
     </div>
   );
 };

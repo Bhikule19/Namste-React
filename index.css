@@ -59,4 +59,14 @@
   .restmenu-width {
     max-width: calc(100% - 144px);
   }
+
+  .header-style {
+    transform: translateZ(0);
+    transition: transform 0.3s ease;
+    contain: size layout style;
+  }
+
+  .header-shadow {
+    box-shadow: 0 15px 40px -20px rgba(40, 44, 63, 0.15);
+  }
 }

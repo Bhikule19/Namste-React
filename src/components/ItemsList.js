@@ -18,7 +18,7 @@ const ItemsList = ({ items }) => {
         <div key={item.card.info.id} className="block">
           <div className="block">
             <div className="block pb-4">
-              <div className="flex items-start justify-between ">
+              <div className="flex items-start justify-between pb-5">
                 <div className="restmenu-width block">
                   <div>
                     <i className="leading-5 text-base align-middle mt-[-2px] inline-block">
@@ -42,13 +42,13 @@ const ItemsList = ({ items }) => {
                   </div>
                   <div className="mt-1">
                     <span className="text-base mr-2 font-normal text-[#3e4152]">
-                      {item.card.info.price ? (
+                      {/* {item.card.info.price ? (
                         <span className="text-[0.7rem] font-light	line-through	mt-[-6px] mr-1">
                           Rs. {item.card.info.price / 100}
                         </span>
-                      ) : null}
+                      ) : null} */}
                       {item.card.info.price ? (
-                        <span>Rs. {item.card.info.finalPrice / 100}</span>
+                        <span>Rs. {item.card.info.price / 100}</span>
                       ) : (
                         <span>Rs. {item.card.info.defaultPrice / 100}</span>
                       )}
